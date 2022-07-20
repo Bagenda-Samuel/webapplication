@@ -1,0 +1,75 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.main{
+    width: 100%;
+    background: url("../images/gallery1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 40vh;
+    position: relative;
+}
+.main::before{
+    position: absolute;
+    content: " ";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+}
+.main div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    width: 60%;
+    text-align: center;
+    border: 1px solid rgb(248, 226, 226);
+    border-radius: 5px;
+    padding: 20px;
+}
+.main div p{
+    padding: 10px;
+}
+.gallery{
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    grid-column-gap: 1%;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    margin-top: -40px;
+}
+.gallery div{
+    width: 100%;
+    position: relative;
+    margin: 10px 0;
+}
+.gallery div img{
+    width: inherit;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 5px 5px 0 0;
+}
+.gallery figcaption{
+    padding: 10px;
+    text-align: center;
+    color: white;
+    background: black;
+}
+.viewall{
+    text-align: center;
+    padding: 20px;
+}
+.viewall button{
+    width: 20%;
+    padding: 10px 20px;
+    background-color: rgb(52, 52, 221);
+    color: white;
+    border-radius: 20px;
+    border: none;
+}

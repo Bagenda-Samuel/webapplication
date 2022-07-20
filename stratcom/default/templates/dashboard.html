@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <title>Stratcom | Dashboard</title>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="left">
+            <h1>Welcome</h1>
+            <img src="{{user_profile.pp.url}}" alt="pp">
+            <figcaption>{{user_profile.owner.get_full_name}}</figcaption>
+            <span>Registered: {{user_profile.owner.date_joined}}</span>
+            <ul>
+                <li onclick="window.location.href='/dashboard/';">Start new Application</li>
+                <li onclick="window.location.href='/dashboard/?view=true';">View Application Status</li>
+                <li onclick="window.location.href='/about/';">About Us</li>
+                <li onclick="window.location.href='/gallery/';">Gallery</li>
+                <li onclick="window.location.href='/logout/';">Logout</li>
+            </ul>
+        </div>
+        <div class="right">
+            <img src="{% static 'images/person.jpg' %}" alt="logo">
+            <h1>Internship Application Form</h1>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <p style="background: red; color: white;">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+                {% if status_application %}
+                <p style="color: green; font-weight:900;">{{status_application}}</p>
+                {% endif %}
+                <div class="divided">
+                    <input type="text" name="fname" value="{{user_profile.owner.first_name}}" readonly placeholder="Enter Your Firstname" required>
+                    <input type="text" name="lname" value="{{user_profile.owner.last_name}}" readonly placeholder="Enter your second name" required>
+                </div>
+                <div class="divided">
+                    <select name="gender">
+                        <optgroup label="select your gender">  
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="others">Others</option>
+                        </optgroup>
+                    </select>
+                    <input type="date" name="date" required>
+                </div>
+                <input type="email" value="{{user_profile.owner.email}}" readonly name="email" placeholder="Enter a valid email" required>
+                <input type="text" name="university" placeholder="Enter your university" required>
+                <input type="file" name="letter" accept="image/*, application/pdf" required>
+                <textarea name="areas" rows="5" placeholder="Enter your areas of interest" required></textarea>
+                <button>Submit Application</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

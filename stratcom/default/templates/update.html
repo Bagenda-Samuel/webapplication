@@ -1,0 +1,47 @@
+<form class="form" action="" method="post" id="updateForm" ondblclick="closeForm()">{% csrf_token %}
+    <h1>Stratcom Gallery Update</h1>
+    <input type="text" placeholder="caption" name="caption" value="{{gallery.figcaption}}">
+    {% if gallery.pic.url %}
+    <img src="{{gallery.pic.url}}" alt="gallery" id="ppp">
+    {% endif %}
+    <input type="file" accept="image/*" name="gallery" onchange="galleryImage(this);">
+    <button value="{{gallery.id}}" onclick="submitUpdate(this);">Update image</button>
+</form>
+<style>
+    .form{
+        width: 100%;
+    }
+    .form h1{
+        text-align: center;
+        padding: 20px;
+        background-color: rgb(34, 165, 99);
+        color: rgb(132, 247, 237);
+    }
+    .form input{
+        box-sizing: border-box;
+        width: 95%;
+        padding: 10px 10px;
+        border: none;
+        border: 1px solid rgb(141, 214, 248);
+        border-radius: 3px;
+        margin: 10px;
+    }
+    .form input:focus{
+        outline: none;
+    }
+    .form input[type='file']{
+        border: none;
+    }
+    .form img{
+        width: 30%;
+        height: auto;
+        margin: 10px;
+    }
+    .form button{
+        background: green;
+        color: white;
+        padding: 10px;
+        width: 100%;
+        border: none;
+    }
+</style>

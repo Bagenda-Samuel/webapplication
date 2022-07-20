@@ -1,0 +1,137 @@
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="./images/bk.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+    <title>Stratcom | Gallery</title>
+</head>
+<body>
+    <div id="overlay"></div>
+    <div id="replaced"></div>
+    <div class="main">
+        <div>
+            <h1>Stratcom Photo Gallery</h1>
+            <p>At stratcom we carry out anumber of routines during our internship taining, Below are some of the activities conducted.</p>
+        </div>
+    </div>
+    {% if gallery_items %}
+    <div class="gallery">
+        {% for item in gallery_items %}
+            <div>
+                <img src="{{item.pic.url}}" alt="galleryImage">
+                <figcaption>{{item.figcaption}}</figcaption>
+                {% if request.user.is_authenticated and request.user.is_superuser %}
+                <div style="text-align: center;">
+                    <button value = "{{item.id}}" onclick="update(this)">Update</button>
+                    <button onclick="window.location.href='/gallery/?delete={{item.id}}';">Delete</button>
+                </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="viewall" style="text-align: center;">
+        <div>
+            {% if gallery_items.has_previous %}
+            <button onclick="window.location.href='/gallery/?page={{gallery_items.previous_page_number}}';">Previous</button>
+            {% else %}
+            <button disabled>Previous</button>
+            {% endif %}
+            <span>{{gallery_items}}</span>
+            {% if gallery_items.has_next %}
+            <button onclick="window.location.href='/gallery/?page={{gallery_items.next_page_number}}';">Next</button>
+            {% else %}
+            <button disabled>Next</button>
+            {% endif %}
+        </div>
+    </div>
+    {% else %}
+    <div style="text-align: center; padding: 20px;">
+        <h4>Gallery Coming Soon!</h4>
+    </div>
+    {% endif %}
+    <style>
+        body{
+            position: relative;
+        }
+        #overlay{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: rgba(61, 157, 221, 0.911);
+            z-index: 1;
+            display: none;
+        }
+        #replaced{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: white;
+            z-index: 2;
+            display: none;
+        }
+    </style>
+    <script>
+        function update(e){
+            let id = e.value;
+            let overlay = document.getElementById("overlay");
+            overlay.style.display = "block";
+            fetch(`/gallery/?update=${id}`, {
+                method: 'GET',
+                })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Success:', data);
+                document.getElementById("replaced").style.display="block";
+                document.getElementById("replaced").innerHTML = data;
+                })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+        let overlay = document.getElementById("overlay");
+            overlay.addEventListener("dblclick",function(){
+                this.style.display = "none"
+            })
+        function closeForm(){
+            document.getElementById("replaced").style.display="none";
+            document.getElementById("overlay").style.display="none";
+        }
+        function galleryImage(e){
+            let file = e.files[0];
+            let changed = document.getElementById("ppp");
+            changed.src = URL.createObjectURL(file);
+        }
+        function submitUpdate(e){
+            let form = document.getElementById("updateForm");
+            form.onsubmit=function(event){
+                event.preventDefault();
+                let formData = new FormData(form);
+                formData.append("id",e.value);
+                fetch(`/gallery/`, {
+                    method: 'POST',
+                    body: formData,
+                    })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    alert(data['message']);
+                    })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+            
+            
+        }
+    </script>
+</body>
+</html>

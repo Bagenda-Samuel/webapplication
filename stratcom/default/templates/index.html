@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <title>Stratcom | Home</title>
+</head>
+<body>
+    <div class="divided">
+        <div class="left">
+            <div>
+                <h4>STARTCOM INTERNSHIP REGISTRATION SYSTEM</h4>
+                <p>Stratcom Communications and Computer Solutions Ltd, is a registered IT Company in Uganda that offers a range of computer services ...</p>
+                <button class="btn1" onclick="window.location.href='./login/';">Login</button>
+                <button class="btn2" onclick="window.location.href='./about/';">About Us</button>
+                <button class="btn3" onclick="window.location.href='./gallery/';">Gallery</button>
+            </div>
+        </div>
+        <div class="right">
+            <h4>Create a new Account</h4>
+            <img src="{% static 'images/logo.png' %}" alt="logo">
+            {% if messages %}
+                {% for message in messages %}
+                <p style="background: red; color: white;">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+            <form action="." method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" placeholder="Enter your firstname" name="fname"/>
+                <input type="text" placeholder="Enter your second name" name="sname"/>
+                <input type="text" placeholder="Enter a username" name="uname"/>
+                <input type="email" placeholder="Enter a valid email address" name="email"/>
+                <input type="password" placeholder="Enter your password" name="password"/>
+                <input type="password" placeholder="Re-enter your password" name="password2"/>
+                <input type="file" name = "pp" accept="image/*"/>
+                <button>Submit Registration Information</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

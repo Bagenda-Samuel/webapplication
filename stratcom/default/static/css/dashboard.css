@@ -1,0 +1,107 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    width: 100%;
+    position: relative;
+}
+.dashboard{
+    display: grid;
+    grid-template-columns: 30% 68%;
+    grid-column-gap: 2%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.dashboard .left{
+    text-align: center;
+}
+.dashboard .left img{
+    width: 140px;
+    height: 140px;
+    border-radius: 100%;
+    padding: 20px 0;
+    object-fit: cover;
+}
+.dashboard .left h1{
+    font-size: 1.5rem;
+    color: rgb(41, 40, 40);
+    padding: 20px 0;
+    width: 100%;
+}
+.dashboard .left ul{
+    background: whitesmoke;
+    text-align: left;
+    margin: 20px 0;
+}
+.dashboard .left li{
+    padding: 20px 10px;
+    background: rgb(52, 52, 221);
+    width: 95%;
+    border-bottom: 2px solid whitesmoke;
+    color: white;
+    list-style: none;
+}
+.dashboard .left li:hover{
+    background: rgb(20, 20, 68);
+    cursor: pointer;
+}
+.dashboard .left figcaption{
+    font-weight: bolder;
+    color: rgb(70, 70, 70);
+    padding-bottom: 10px;
+}
+.dashboard .left span{
+    color: rgb(70, 70, 70);
+}
+.dashboard .left h1{
+    background: rgb(20, 20, 68);
+    color: white;
+    padding: 20px 0;
+}
+.dashboard .right{
+    text-align: center;
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+}
+.dashboard .right h1{
+    color: rgb(42, 42, 42);
+}
+.dashboard .right form{
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+.dashboard .right img{
+    width: 15%;
+}
+.dashboard .right h1{
+    padding: 20px 0;
+}
+.dashboard .right input,
+select,
+textarea{
+    width: 100%;
+    padding: 10px;
+    margin: 4px 0;
+    box-sizing: border-box;
+}
+.dashboard .right input:focus,
+select:focus,
+textarea:focus{
+    outline: none;
+}
+.dashboard .right button{
+    width: 100%;
+    padding: 10px;
+    background: rgb(52, 52, 221);
+    color: white;
+    border: none;
+}
+.dashboard .divided{
+    display: grid;
+    grid-template-columns: 49% 49%;
+    grid-column-gap: 2%;
+}

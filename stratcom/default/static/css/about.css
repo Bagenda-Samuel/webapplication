@@ -1,0 +1,80 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.main{
+    background: rgb(52, 52, 221);
+    text-align: center;
+    height: 30vh;
+    position: relative;
+    margin-top: 10px;
+}
+.main div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    width: 80%;
+}
+.main div p{
+    text-align: justify;
+    padding: 10px 0;
+}
+.mission{
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    grid-column-gap: 2%;
+    padding: 20px;
+}
+.mission div{
+    padding: 20px;
+    border: 1px solid rgb(208, 208, 208);
+    border-radius: 10px;
+}
+.mission div h4{
+    text-align: center;
+}
+.team{
+    display: grid;
+    grid-template-columns: 24% 24% 24% 24%;
+    grid-column-gap: 1%;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    background: whitesmoke;
+}
+.team h4{
+    grid-column: 1 / 5;
+    text-align: center;
+    font-size: 2rem;
+    padding: 20px 0;
+    color: rgb(31, 31, 31);
+}
+.team img{
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+.team div span{
+    width: 100%;
+}
+.team div p{
+    padding: 3px 10px;
+}
+.team div p:last-child{
+    background: rgb(52, 52, 221);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    transition: .5s;
+}
+.team div p:last-child:hover{
+    background: rgb(30, 30, 143);
+    cursor: pointer;
+}
+.team div figcaption{
+    color: rgb(58, 58, 58);
+    text-align: center;
+}
